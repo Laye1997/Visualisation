@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <style>
+    .bar{
+        fill:steelblue;
+        }
+        .axis{
+            font:10px sans-serif;
+        }
+        .axis path,
+        .axis line{
+            fill:none;
+            stroke:#000;
+            shape-rendering:crisEdges;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <script src = "d3.js"></script>
+    <script>
+        //parametrage des dimensions
+        var margin={top:10, right:20, bottom:70, left:200},
+        width  =600 ,  height =400;
+      
+
+        //mise en place du cadre de dessin
+        var svg=d3.select("body").append("svg")
+        .attr("width",width + margin.left + margin.right+200)
+        .attr("height",height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform","translate(" + margin.left +"." + margin.top + ") ")
+
+
+
+
+        var election=[{"candidat":1, "nom":"MackySall", "part":58.26},
+        {"candidat":2, "nom":"IdrissaSeck", "part":20.51},
+        {"candidat":3, "nom":"OusmaneSonko", "part":15.67},
+        {"candidat":4, "nom":"IssaSall", "part":4.07},
+        {"candidat":5, "nom":"MadickeNiang", "part":1.48}];
+        //mise en place des axes
+        var x= d3.scale.linear()
+        .range([0,width]);
+
+        var y= d3.scale.ordinal()
+        .rangeRoundeBands([height, 0], 0.10);
+
+        var xAxis= d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+        var yAxis= d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(10);
+        //chargenment ds données
+      
+            election.forEach(function(d){
+                d.candidat =d.candidat;
+                d.part =+d.part;
+            });
+      
+        x.domain(0, d3.max(election, function(d){return d.part;}));
+        y.domain(election.map(function(d){return d.nom;}));
+       //ajouter des axes
+        svg.append("g")
+        .attr("class","x axis")
+        .attr("transform","translate(0,"+ height+")")
+        .call(cAxis);
+
+        svg.append("g")
+        .attr("class","y axis")
+        .call(yAxis);
+
+
+         svg.append("text")
+            .attr("transform","rotate(-90")
+            .attr("x", -200)
+            .attr("y", -150)
+            .attr("dy", "O.em")
+            .style("text-anchor", "middle")
+            .style("text-anchor", "middle")
+            .style("stroke", "back")
+            .text("candidat");
+
+        
+
+         //Representation des données en bande
+         var colors= ["brown","orange","red","green","blue"];
+         var group =svg.append("g");
+         group.selectAll("bar")
+         .data(election)
+         .enter()
+         .append("rect")
+         .attr("class","bar")
+         .attr("x",function(d){return  x(d.part);})
+         .attr("width",function(d){return  x(d.part);})
+         .attr("y",function(d){return  y(d.nom);})
+         .attr("height", y.rangeBand())
+         .attr("fill",function(d,i){return colors[i]});
+
+         //donner la legende
+         var Lalegende =svg.append("g");
+         Lalegende
+         .selectAll("rect")
+         .data(election)
+         .enter()
+         .append("rect")
+         .attr("width",40)
+         .attr("height",30)
+         .att("x",width-10)
+         .attr("y",function(d,i){return 50+(i*50); })
+         .style("fill",function(d,i)  {return colors[i]; });
+
+         Lalegende
+         .selectAll("text")
+         .data(election)
+         .enter()
+         .append("text")
+         .attr("width",110)
+         .attr("height",0)
+         .att("x",width-105)
+         .attr("y",function(d,i){return 70+(i*50); })
+         .text(function(d,i)  {return (d.nom); })
+
+          
+
+         </script>
+         <h2><center>Resultat obtenu en %</center></h2>
+
+         </body>
+         </html>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
