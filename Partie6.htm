@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+</head>
+<body>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script>
+
+<!--
+function CreeTableau() {
+  this.length = CreeTableau.arguments.length
+  for (var i = 0; i < this.length; i++)
+  this[i+1] = CreeTableau.arguments[i]
+  }
+  
+var LibelleOption = new CreeTableau("Voir tendance pour chaque candidat",
+"IDY",
+"MADICKE",
+"MACKY",
+"Sonko ",
+"Issa Sall");
+var CibleURL = new CreeTableau("",
+"barchatIDy.html",
+"barchatMadicke.html",
+"barchatMACKY.html",
+"barchatsonko.html",
+"barchatISSASALL.html",);
+
+function AllerA(form) {
+  i = form.SelectMenu.selectedIndex;
+  if (i == 0) return;
+  parent.location.href = CibleURL[i+1];
+  }
+// -->
+
+</script>
+
+<SCRIPT>
+document.write("<FORM>");
+document.write("<SELECT NAME='SelectMenu' onChange='AllerA(this.form)'>");
+Nombre = LibelleOption.length;
+for (var i = 1; i <= Nombre; i++)
+document.write("<OPTION>" +LibelleOption[i]);
+document.write('</SELECT>');
+document.write('</FORM>');
+// -->
+</SCRIPT>
+</body>
+</html>
+
+ 

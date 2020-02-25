@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td { border:solid black;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Présentation des données sous forme de tableau</h2>
+
+<script>
+
+<!--
+function CreeTableau() {
+  this.length = CreeTableau.arguments.length
+  for (var i = 0; i < this.length; i++)
+  this[i+1] = CreeTableau.arguments[i]
+  }
+  
+var LibelleOption = new CreeTableau("PARTIE 5",
+"TRACAGE DU TABLEAU",
+"MISE EN FORME CONDITIONNELLE");
+var CibleURL = new CreeTableau("",
+"Partie5.html",
+"TABLEAU4.html",);
+
+function AllerA(form) {
+  i = form.SelectMenu.selectedIndex;
+  if (i == 0) return;
+  parent.location.href = CibleURL[i+1];
+  }
+// -->
+
+</script>
+
+<SCRIPT>
+document.write("<FORM>");
+document.write("<SELECT NAME='SelectMenu' onChange='AllerA(this.form)'>");
+Nombre = LibelleOption.length;
+for (var i = 1; i <= Nombre; i++)
+document.write("<OPTION>" +LibelleOption[i]);
+document.write('</SELECT>');
+document.write('</FORM>');
+// -->
+</SCRIPT>
+
+<table id="latable">
+  <tr>
+    <th></th>
+    <th>iDY</th>
+    <th>MACKY</th>
+    <th>SONKO</th>
+    <th>MADICKE</th>
+    <th>ISSA SALL</th>
+  </tr>
+   
+    <tr>
+   <td>Dakar</td>
+    <td >115612</td>
+    <td>5646</td>
+    <td id="ver">212355</td>
+    <td id="ver">101003</td>
+    <td>18662</td>
+  </tr>
+    <tr>
+   <td>Diourbel</td>
+    <td>22026</td>
+    <td>1682</td>
+    <td id="jaune">40501</td>
+    <td>6300</td>
+    <td>884</td>
+  </tr>
+ <tr>
+ <td>Fatick</td>
+ <td>5172</td> 
+ <td>673</td> 
+ <td>8088</td>
+ <td>9349</td> 
+ <td>4089</td>
+ </tr>
+  <tr>
+  <td>Kaffrine</td> 
+  <td>6513</td>
+  <td>731</td>
+  <td id="jaune">38874</td>
+  <td>5294</td> 
+  <td>3406</td>
+  </tr>
+   <tr>
+   <td>KEDOUGOU</td>
+    <td>115612</td>
+    <td>5646</td>
+    <td>212325</td>
+    <td>101003</td>
+    <td>18662</td>
+  </tr>
+  <tr>
+  <td>Kaolack</td>
+  <td>18649</td>
+  <td>1758</td>
+  <td id="ver">99376</td>
+  <td>22677</td>
+  <td>4343</td>
+  </tr>
+  <tr>
+  <td>Kolda</td> 
+  <td>6245</td> 
+  <td>1042</td> 
+  <td id="jaune">36927</td>
+  <td>13839</td> 
+  <td>789</td>
+  </tr>
+  <tr>
+  <td>Louga</td> <td>19788</td> <td>2344</td> <td id="ver">73514</td> <td>9612</td> <td>15617</td>
+  <tr>
+  <td>Matam</td>
+  <td>2239</td>
+  <td>0</td>
+  <td id="ver">92454</td> 
+  <td>3698</td>
+  <td>582</td>
+  </tr>
+  <tr>
+  <td>Saint Louis</td> <td>17404</td> <td>3160</td> <td id="ver">62788</td> <td>18632</td> <td>7471</td>
+  </tr>
+ <tr1>
+<td>Sedhiou</td> <td>3 808 </td><td>68023</td> <td>414</td> <td>14833</td> <td>407</td></tr1>
+<tr>
+<td>Tambacounda</td> <td>5401</td>  <td>1 074</td> <td id="jaune">46 096</td> <td>11 258</td> <td>1 184</td>
+</tr>
+<tr>
+<td>Thies</td> <td id="ver">120054</td> <td>2312</td> <td id="ver">100422</td> <td>19737</td> <td>12102</td>
+</tr>
+<tr>
+<td>Ziguinchor</td> <td>2419</td> <td>510</td> <td id="jaune">32846</td> <td id="jaune">41291</td> <td>556</td>
+</tr>
+</table>
+<script>
+  
+</script>
+</body>
+</html>

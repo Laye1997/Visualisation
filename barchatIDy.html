@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+	<html>
+
+	
+	<head>
+	<meta charset="utf-8">
+	<style>
+
+body {
+  background-color: lightblue;
+  width:300;
+  height: 300;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+</style>
+	</head>
+	
+	<body>
+	
+	<script src="d3.js"></script>
+<script>
+
+<!--
+function CreeTableau() {
+  this.length = CreeTableau.arguments.length
+  for (var i = 0; i < this.length; i++)
+  this[i+1] = CreeTableau.arguments[i]
+  }
+  
+var LibelleOption = new CreeTableau("Voir tendance pour chaque candidat",
+"IDY",
+"MADICKE",
+"MACKY",
+"Sonko ",
+"Issa Sall")
+
+var CibleURL = new CreeTableau("",
+"barchatIDy.html",
+"barchatMadicke.html",
+"barchatMACKY.html",
+"barchatsonko.html",
+"barchatISSASALL.html",);
+
+function AllerA(form) {
+  i = form.SelectMenu.selectedIndex;
+  if (i == 0) return;
+  parent.location.href = CibleURL[i+1];
+  }
+// -->
+
+</script>
+
+<SCRIPT>
+document.write("<FORM>");
+document.write("<SELECT NAME='SelectMenu' onChange='AllerA(this.form)'>");
+Nombre = LibelleOption.length;
+for (var i = 1; i <= Nombre; i++)
+document.write("<OPTION>" +LibelleOption[i]);
+document.write('</SELECT>');
+document.write('</FORM>');
+// -->
+</SCRIPT>
+
+	<div id="tutorialwrap" class="header">
+	<h1 style="color:blue;">Visualisation dynamique</h1>
+	<h3 style="color:blue;">Nombre de voix de Idrissa Seck</h3>
+</div>
+	<script>
+	//Parametrage des dimensions
+	var margin = {top:0, right:100, bottom:40, left:100},
+	width = 1000, height = 1000; // Cadre de dessin
+		//Mise en place du cadre de dessin
+ // D'apres le DOM, possibilité de convoquer
+
+	var svg = d3.select("body").append("svg")  // var svg creation de variables svg, //d3.selectbody on a selection lelement body, append svg ajouter l'élément svg
+	.attr("width",width + margin.left + margin.right) // pour la largeur , ajoute la valeur de width, left et right
+	.attr("height",height + margin.top + margin.bottom) // pour la hauteur , ajoute la valeur de height, top et bottom
+	.append("g") // ajouter un traitement pour un ensemble de comportement
+	.attr("transform","translate(" + margin.left + "." + margin.top + ")")
+	; // laisser une marge de valeur left pour la gauche et top pour le haut
+
+	 var election = 
+	[{"candidat":1, "nom":"Dakar    ","part":10*11.5612},
+	{"candidat":2, "nom":"Diourbel    ", "part":10*2.2026},
+	{"candidat":3, "nom":"Fatick    ", "part":10*0.5172},
+	{"can didat":4, "nom":"Kaffrine", "part":10*0.6513},
+	{"candidat":5, "nom":"Kaoloack", "part":10*1.8649},
+	{"candidat":1, "nom":"kedougou","part":10*0.2494},
+	{"candidat":2, "nom":"kolda", "part":10*0.6245},
+	{"candidat":3, "nom":"louga", "part":10*1.9788},
+	{"candidat":4, "nom":"matam", "part":10*0.2239},
+	{"candidat":5, "nom":"st louis", "part": 10*1.7404},
+	{"candidat":1, "nom":"sediou","part":10*0.3808},
+	{"candidat":2, "nom":"tamba", "part":10*0.5401},
+	{"candidat":3, "nom":"thies", "part":10*12.0054},
+	{"candidat":4, "nom":"zig", "part":10*0.2419},];
+	
+
+	var colors = d3.scale.category20c();
+	//Mise en place des axes
+	//denir les axes
+	var x = d3.scale.ordinal() //echelle pour laxe x avec des intervalles egaux
+	.rangeRoundBands([0,width],0.50); // 0.10 est l'ecart entre chaque point de l'ax ;
+	
+	var y = d3.scale.linear() // des intervalles pas forcement egaux
+	.range([350,0],0); // ecart nond efini
+	
+	//dessiner les axes
+	var xAxis = d3.svg.axis() // mise en place de l'axe
+	.scale(x) // utilisation de l'echelle defini en x
+	.orient("bottom"); // en bas de la gauche vers la droite
+	
+	var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left") // position de l'axe y
+	.ticks(5); // saut de valeurs
+	
+	election.forEach(function(d){
+		d.nom = d.nom;
+		d.part = +d.part;
+
+	x.domain(election.map(function(d){return d.nom.toString();}));
+	y.domain([0,d3.max(election, function(d){return d.part;})]);
+	
+	svg.append("g")
+	.attr("class","axis axis--x")
+	.attr("transform","translate(0,"+350+")")
+	.call(xAxis)
+	
+		.attr("text-anchor","end")
+		.selectAll("text")
+		.attr("transform","rotate(-45)");
+
+	
+
+	svg.append("g")
+.attr("class", "axis")
+.attr("transform", "translate(0,0)")
+.call(yAxis)
+.append("text")
+.attr("transform", "rotate(-90)")
+.attr("y", -50)
+.style("text-anchor", "end")
+.text("          __________Nombre de Voix___________                      .");
+	
+	//Representation des données en bande
+	var group = svg.append("g");
+	group.selectAll("bar")
+	.data(election)
+	.enter()
+	.append("rect")
+	.attr("class","bar")
+	.attr("x",function(d){return x(d.nom);})
+	.attr("width",x.rangeBand())
+	.attr("y",function(d){return y(d.part);})
+	.attr("height",function(d){return 350- y(d.part);})
+	.style('fill', function(d) { return colors(d.part);});
+	});
+	 
+	 // select the svg area
+
+
+
+	
+
+// select the svg area
+// create a list of keys
+var keys = ["Dakar", "Diourbel", "Fatick", "Kaffrine", "Kaoloack","kedougou","kolda", "louga", "matam", "st louis", "sediou","tamba","thies","zig"] 
+
+// Usually you have a color scale in your chart already
+var color = colors
+  .domain(keys);
+
+// Add one dot in the legend for each name.
+var size = 20
+svg.selectAll("mydots")
+  .data(keys)
+  .enter()
+  .append("rect")
+    .attr("x", 1000)
+    .attr("y", function(d,i){ return i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size)
+    .style("fill", function(d){ return color(d)})
+
+// Add one dot in the legend for each name.
+svg.selectAll("mylabels")
+  .data(keys)
+  .enter()
+  .append("text")
+    .attr("x", 1000 + size*1.2)
+    .attr("y", function(d,i){ return i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
+    .style("fill", function(d){ return color(d)})
+    .text(function(d){ return d})
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+</script>
+	
+	</body>
+</html>
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td { border:solid black;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  
+}
+
+
+</style>
+</head>
+<body>
+
+<h2 style="font-size:60px;">Présentation des données sous forme de tableau</h2>
+
+<script>
+
+<!--
+function CreeTableau() {
+  this.length = CreeTableau.arguments.length
+  for (var i = 0; i < this.length; i++)
+  this[i+1] = CreeTableau.arguments[i]
+  }
+  
+var LibelleOption = new CreeTableau("PARTIE 5",
+"TRACAGE DU TABLEAU",
+"MISE EN FORME CONDITIONNELLE");
+var CibleURL = new CreeTableau("",
+"Partie5.html",
+"TABLEAU4.html",);
+
+function AllerA(form) {
+  i = form.SelectMenu.selectedIndex;
+  if (i == 0) return;
+  parent.location.href = CibleURL[i+1];
+  }
+// -->
+
+</script>
+
+<SCRIPT>
+document.write("<FORM>");
+document.write("<SELECT NAME='SelectMenu' onChange='AllerA(this.form)'>");
+Nombre = LibelleOption.length;
+for (var i = 1; i <= Nombre; i++)
+document.write("<OPTION>" +LibelleOption[i]);
+document.write('</SELECT>');
+document.write('</FORM>');
+// -->
+</SCRIPT>
+<h2>
+•Lorsque le nombre de voix est compris entre 0 et 26500,
+Colorier la cellule de données en Jaune </h2>
+<h2>
+•Lorsque le nombre de voix est compris entre 26500 et 53000
+Colorier la cellule de données en Orange
+</h2><h2>
+•Lorsque le nombre de voix est supérieur à 53000
+Colorier la cellule de données en Vert
+</h2>
+
+<table id="latable">
+  <tr>
+    <th></th>
+    <th>iDY</th>
+    <th>MACKY</th>
+    <th>SONKO</th>
+    <th>MADICKE</th>
+    <th>ISSA SALL</th>
+  </tr>
+   
+    <tr>
+   <td>Dakar</td>
+    <td bgcolor="green">115612</td>
+    <td bgcolor="yellow">5646</td>
+    <td bgcolor="green">212355</td>
+    <td bgcolor="green">101003</td>
+    <td bgcolor="yellow">18662</td>
+  </tr>
+    <tr>
+   <td>Diourbel</td>
+    <td bgcolor="yellow">22026</td>
+    <td bgcolor="yellow">1682</td>
+    <td bgcolor="orange">40501</td>
+    <td bgcolor="yellow">6300</td>
+    <td bgcolor="yellow">884</td>
+  </tr>
+ <tr>
+ <td>Fatick</td>
+ <td bgcolor="yellow">5172</td> 
+ <td bgcolor="yellow">673</td> 
+ <td bgcolor="yellow">8088</td>
+ <td bgcolor="yellow">9349</td> 
+ <td bgcolor="yellow">4089</td>
+ </tr>
+  <tr>
+  <td>Kaffrine</td> 
+  <td bgcolor="yellow">6513</td>
+  <td bgcolor="yellow">731</td>
+  <td bgcolor="orange">38874</td>
+  <td bgcolor="yellow">5294</td> 
+  <td bgcolor="yellow">3406</td>
+  </tr>
+   <tr>
+   <td>KEDOUGOU</td>
+    <td bgcolor="green">115612</td>
+    <td bgcolor="yellow">5646</td>
+    <td bgcolor="green">212325</td>
+    <td bgcolor="green">101003</td>
+    <td bgcolor="yellow">18662</td>
+  </tr>
+  <tr>
+  <td>Kaolack</td>
+  <td bgcolor="yellow"> 18649</td>
+  <td bgcolor="yellow">1758</td>
+  <td bgcolor="yellow">99376</td>
+  <td bgcolor="yellow">22677</td>
+  <td bgcolor="yellow">4343</td>
+  </tr>
+  <tr>
+  <td>Kolda</td> 
+  <td bgcolor="yellow">6245</td> 
+  <td bgcolor="yellow">1042</td> 
+  <td bgcolor="orange">36927</td>
+  <td bgcolor="yellow">13839</td> 
+  <td bgcolor="yellow">789</td>
+  </tr>
+  <tr>
+  <td>Louga</td> <td bgcolor="yellow">19788</td> <td bgcolor="yellow">2344</td> <td bgcolor="green">73514</td> <td bgcolor="yellow">9612</td> <td bgcolor="yellow">15617</td>
+  <tr>
+  <td >Matam</td>
+  <td bgcolor="yellow">2239</td>
+  <td bgcolor="yellow">0</td>
+  <td bgcolor="yellow">92454</td> 
+  <td bgcolor="yellow">3698</td>
+  <td bgcolor="yellow">582</td>
+  </tr>
+  <tr>
+  <td>Saint Louis</td> <td bgcolor="yellow">17404</td> <td bgcolor="yellow">3160</td> <td bgcolor="yellow">62788</td> <td bgcolor="yellow">18632</td> <td bgcolor="yellow">7471</td>
+  </tr>
+ <tr1>
+<td>Sedhiou</td> <td bgcolor="yellow">3 808 </td><td bgcolor="green">68023</td> <td bgcolor="yellow">414</td> <td bgcolor="yellow"> 14833</td> <td bgcolor="yellow">407</td></tr1>
+<tr>
+<td>Tambacounda</td> <td bgcolor="yellow">5401</td>  <td bgcolor="yellow"> 1 074</td> <td bgcolor="orange">46 096</td> <td bgcolor="yellow">11 258</td> <td bgcolor="yellow">1 184</td>
+</tr>
+<tr>
+<td>Thies</td> <td bgcolor="green">120054</td> <td bgcolor="yellow">2312</td> <td bgcolor="green">100422</td> <td bgcolor="yellow">19737</td> <td bgcolor="yellow">12102</td>
+</tr>
+<tr>
+<td>Ziguinchor</td> <td bgcolor="yellow">2419</td> <td bgcolor="yellow">510</td> <td bgcolor="orange">32846</td> <td bgcolor="orange">41291</td> <td bgcolor="yellow">556</td>
+</tr>
+</table>
+<script>
+  
+</script>
+</body>
+</html>
