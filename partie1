@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+.		<title>Thies</title>
+		<link rel='stylesheet' href='thies.css' />
+	</head>
+	<body>
+		<form method='POST' action='projet' id='formulaire'>
+			<div id='p1'>
+				<h1>Panneau de saisie</h1>
+				<p><label for='nom'>Nom de l'employé </label><input class='ipt' type='text' name='nom' id='nom' /></p>
+				<p><label for='prenom'>Prenom de l'employé </label><input class='ipt' type='text' name='prenom' id='prenom' /></p>
+				<p><label for ='categorie' id=categorie>Categorie </label>
+				<select name='categorie'>
+					<option value='categorieA'>Categorie A</option>
+					<option value='categorieB'>Categorie B</option>
+					<option value='categorieC'>Categorie C</option>
+				</select>
+				<p><label for='nbheure'>Nombre d'heures </label><input class='ipt' type='number' name='nbheure' id='nbheure' /></p>
+				<label>A t-il effectué des Heures Supplementaires </label>
+				<p><input  type='radio' name='effect' value='oui' id='oui' checked /><label for='oui'>Oui</label></p>
+				<p><input  type='radio' name='effect' value='non' id='non' /><label for='non'>Non</label></p>
+				<p><label for='heuresup'>Heures Sup. </label><input class='ipt' type='number' name='heuresup' id='heuresup' /></p>
+				<p><label for='avantage'>Avantage </label><input class='ipt' type='number' name='avantage' id='avantage' /></p>
+				<input id='bouton1' type='submit' name='ajouter' /> <input type='reset' name='annuler' />
+				
+			</div>
+		</form>
+			<div id='p2'>
+				<h1>Enregistrement<h1>
+				<table>
+				<tr><th>Nom</th><th>Prenom</th><th>RAS</th><th>Salaire Net</th></tr>
+				
+				
+				</table>
+            </div> 
+            <script>
+                var nom=document.getElementById("nom").value;
+                var nbheures =parseInt(document.getElementById("nombre d'heures")).value;
+                var rep1 =document.getElementById("oui").value;
+                var rep2=document.getElementById("non").value;
+                var heuresup=parseInt(document.getElementById("HS")).value;
+                var avantage =parseInt(document.getElementById("AV")).value;
+                function saisie(nom,nombreheure,heuresup,avantage){
+                    this.NomE=nom;
+                    this.NH=nombreheure;
+                    this.HS=heuresup;
+                    this.AV=avantage;
+
+
+                    saisie.prototype.getNomE=function(){
+                        return this.NomE;
+                    }
+
+                    saisie.prototype.getNH=function(){
+                        return this.nbheure;
+                    }
+                    saisie.prototype.getHS=function(){
+                        return this.HS;
+                    }
+                    saisie.prototype.getAV=function(){
+                        return this.AV;
+                    }
+
+                }
+                //les rubriques qui composent le salaire net à payer sont:
+
+                // 1ere rubrique :definition d'une fonction qui permet de calculer le salaire de base
+                function salaire_de_base(nbheures){
+                    if (document.formulaire.categorie.option[1].selected){
+                        categorie=" A";
+
+                    var SB=nbheures*10000;
+                    }
+
+                    if(document.formulaire.categorie.option[2].selected){
+                        categorie="B";
+                       var SB=nbheures*7500;
+                    }
+                    if(document.formulaire.categorie.option[3].selected){
+                        categorie="C";
+
+                        var SB=nbheures*5000;
+                    }
+                    return SB;
+
+                }
+                
+                function heure_supplémentaire(nbheures){
+
+                    if(nbheures==145){
+                        if(document.formulaire.categorie.option[1].selected){
+                            categorie="A";
+                            var maj1=5*(10000+0.3*10000);
+                        };
+                        if(document.formulaire.categorie.option[2].selected){
+                            categorie="B"; 
+                            var maj1=5*(7500+0.3*7500);
+                        }
+                        if(document.formulaire.categorie.option[3].selected){
+                            categorie="C";
+                            var maj1=5*(5000+0.3*5000);
+                        }
+                        return maj1;
+                    if(nbheure>145){
+                        var rest=nbheure-140;
+                        if(document.formulaire.categorie.option[1].selected){
+                            categorie="A";
+                            var maj2=5*(10000+0.3*10000)+rest*(10000+0.45*10000);
+                        }
+                        if(document.formulaire.categorie.option[2].selected){
+                            categorie="B";
+                            var maj2=5*(7500+0.3*7500)+rest*(7500+0.45*7500)
+
+                    }   
+                    if(document.formulaire.categorie.option[3].selected){
+                        categorie="C";
+                            var maj2=5*(5000+0.3*5000)+rest*(5000+0.45*5000)
+
+                    }
+                    return maj;
+                }
+            
+                //calculons le salaire de l'employé
+                function salaire(SB,HS,AV){
+                    var S=parseInt("SB")+parseInt("HS")+parseInt("AV")
+                    return S;
+                }
+                //calcule de la retenue a la source
+                function retenu_source(S){
+                    if(document.formulaire.categorie.option[1].selected){
+                        categorie="A";
+                        var RAS=0.1*S;
+                    }
+                    if(document.formulaire.categorie.option[2].selected){
+                        categorie="B";
+                        var RAS= 0.075*S;
+                    }
+                    if(document.formulaire.categorie.option[3].selected){
+                        categorie="C";
+                       var RAS= 0.05*S;
+                    }
+                    return RAS;
+                }
+                //calcule du salaire net
+                function salaireNet(S,RAS){
+                    var SN=S-RAS;
+                    return SN;
+                }
+               
+
+	        </script>
+	</body>
+</html>
